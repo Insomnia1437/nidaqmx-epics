@@ -16,7 +16,27 @@ NI devices used
 [Example code of NI-DAQmx](https://www.ni.com/en/support/documentation/supplemental/18/ni-daqmx-base-example-locations-in-windows--linux-or-mac-os-x.html), You can also find NI-DAQmx example code and header file in this repo.
 
 
-### Usage
+### NI Linux Driver Installation
+```shell
+# Latest driver is 2024Q4
+$ yum install -y ni-rhel9-drivers-2023Q2.rpm
+$ yum repolist
+repo id                                                                                            repo name
+appstream                                                                                          AlmaLinux 9 - AppStream
+baseos                                                                                             AlmaLinux 9 - BaseOS
+extras                                                                                             AlmaLinux 9 - Extras
+ni-software-2023                                                                                   NI Linux Software 2023 Q2
+
+$ yum install -y ni-daqmx ni-daqmx-labview-support
+
+# (Recommended from NI, but may fail due to old GLIBC version on Old Linux)
+#$ yum install ni-hwcfg-utility
+
+$ dkms autoinstall
+$ nilsdev
+```
+
+### Driver Usage
 
 To use this driver, add below rules to `**App/src/Makefile`
 
